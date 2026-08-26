@@ -1,0 +1,23 @@
+/* YES-HA — PLAYGROUND PAGE. Depends on tokens.css + base.css. */
+main{margin-left:184px;padding:0 clamp(24px,4vw,64px) 30px}.hero{padding:44px 0 46px;border-bottom:1px solid var(--line)}
+.kicker,.tag,.n{font-family:var(--rounded);text-transform:uppercase;letter-spacing:.13em}.kicker{font-size:9px;color:var(--faint)}
+h1{font-size:clamp(58px,7vw,96px);line-height:.88;letter-spacing:-.06em;font-weight:400;margin:48px 0 22px}.sub{font-size:16px;color:var(--muted);max-width:520px;line-height:1.55}
+.meta{margin-top:28px;font:500 9px var(--rounded);letter-spacing:.12em;color:var(--faint);text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;padding:24px 0}.card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);min-height:360px;display:flex;flex-direction:column;transition:.35s cubic-bezier(.2,.8,.2,1)}
+.card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.25)}.c1{grid-column:span 7;min-height:540px}.c2{grid-column:span 5;min-height:540px}.c3,.c4{grid-column:span 6}.c5,.c6{grid-column:span 6}
+.visual{position:relative;flex:1;min-height:210px;overflow:hidden;background:
+radial-gradient(circle at 30% 35%,rgba(102,118,255,.20),transparent 24%),
+radial-gradient(circle at 72% 58%,rgba(255,117,84,.13),transparent 22%),
+linear-gradient(145deg,var(--surface-3),var(--bg))}
+.visual:after{content:"";position:absolute;inset:15%;border:1px solid rgba(255,255,255,.08);border-radius:50%;transform:rotate(-18deg)}
+.visual .ghost{position:absolute;inset:0;display:grid;place-items:center;font:500 9px var(--rounded);letter-spacing:.16em;color:var(--faint);text-transform:uppercase}
+.body{padding:18px 20px 22px}.topline{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.n{font-size:9px;color:var(--faint)}.tag{font-size:8px;border:1px solid rgba(255,255,255,.16);padding:5px 8px;border-radius:999px;color:var(--muted)}
+h2{font-size:clamp(25px,2.5vw,38px);letter-spacing:-.045em;font-weight:400;margin:0 0 10px}.desc{font-size:13px;line-height:1.55;color:var(--muted);max-width:500px}.go{display:flex;justify-content:flex-end;font-size:22px;margin-top:15px}
+.footer{border-top:1px solid var(--line);padding:48px 0 10px;display:flex;justify-content:space-between;color:var(--faint);font-size:11px}
+@media(max-width:800px){main{margin:0;padding:0 18px}.hero{padding-top:32px}.grid{display:block}.card{margin:12px 0;min-height:430px}.c1,.c2{min-height:480px}.footer{gap:20px;flex-direction:column}}
+/* Cards have no detail page yet, so they are not links.
+   State the reason instead of promising a destination. */
+.go{justify-content:flex-start;margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.go-status{font:500 var(--t-label) var(--rounded);letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.card{cursor:default}
+.card:hover{transform:none;border-color:var(--line-strong)}

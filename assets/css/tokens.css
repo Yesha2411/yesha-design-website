@@ -1,0 +1,76 @@
+/* ===========================================================
+   YES-HA — DESIGN TOKENS
+   Single source of truth. No other file may redefine a token.
+   Rationale lives in DESIGN.md.
+   =========================================================== */
+
+:root {
+  /* --- Surface ramp -------------------------------------- */
+  --bg: #09090a;
+  --surface: #0e0e10;
+  --surface-2: #131316;
+  --surface-3: #18181c;
+
+  /* --- Text ramp (contrast-checked against --bg) ---------- */
+  --text: #f4f4f2;        /* 18.4:1 — headlines, primary */
+  --soft: #c7c7c4;        /* 11.4:1 — long-form body */
+  --muted: #9a9aa2;       /*  7.1:1 — secondary body */
+  --faint: #83838b;       /*  5.3:1 — smallest legible text */
+  --ghost: #5f5f66;       /*  2.9:1 — DECORATIVE ONLY, never text */
+
+  /* --- Hairlines ----------------------------------------- */
+  --line: rgba(255,255,255,.095);
+  --line-strong: rgba(255,255,255,.18);
+
+  /* --- Accent -------------------------------------------- */
+  /* Signal Lime. Reserved for system state: availability,
+     progress, focus, one primary CTA. Never decoration. */
+  --accent: #dafe20;
+  --accent-soft: rgba(218,254,32,.11);
+  --accent-ink: #0a0a0a;
+
+  /* --- Category tints (gradients + data only) ------------- */
+  --warm: #ffbd71;
+  --violet: #9c8cff;
+  --green: #39df9d;
+
+  /* --- Layout -------------------------------------------- */
+  --sidebar: 184px;
+  --gutter: clamp(20px,5vw,78px);
+  --maxw: 1450px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  /* --- Type ---------------------------------------------- */
+  --geist: "Geist", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-main: var(--geist);
+  --rounded: "SF Pro Rounded", ui-rounded, "Arial Rounded MT Bold", system-ui, sans-serif;
+  --font-round: var(--rounded);
+
+  --t-hero: clamp(58px,7vw,96px);
+  --t-display: clamp(44px,5vw,72px);
+  --t-title: clamp(35px,4vw,58px);
+  --t-head: clamp(25px,2.5vw,38px);
+  --t-lead: clamp(16px,1.5vw,20px);
+  --t-body: 15px;
+  --t-small: 13px;
+  --t-micro: 11px;
+  --t-label: 9px;
+
+  --track-hero: -.065em;
+  --track-title: -.05em;
+  --track-label: .13em;
+
+  /* --- Motion -------------------------------------------- */
+  --ease: cubic-bezier(.2,.75,.2,1);
+  --ease-out: cubic-bezier(.2,.8,.2,1);
+  --dur-fast: .2s;
+  --dur: .38s;
+  --dur-slow: .7s;
+}
+
+/* Motion is a layer, never a dependency. */
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast:.01ms; --dur:.01ms; --dur-slow:.01ms; }
+}

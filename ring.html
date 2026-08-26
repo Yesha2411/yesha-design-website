@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Redesigning Trust for 2M Users — Yesha Niranjan</title>
+
+
+
+
+<meta name="author" content="Yesha Niranjan">
+<link rel="canonical" href="https://yesha-design-website.vercel.app/ring">
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Yesha Niranjan">
+<meta property="og:title" content="Redesigning Trust for 2M Users — Yesha Niranjan">
+<meta property="og:description" content="Research-led redesign of multi-step transaction flows for a Series D payments app. 42 heuristic issues, 6 competitors benchmarked, 35+ screens.">
+<meta property="og:url" content="https://yesha-design-website.vercel.app/ring">
+<meta property="og:image" content="https://yesha-design-website.vercel.app/assets/images/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Redesigning Trust for 2M Users — Yesha Niranjan">
+<meta name="twitter:description" content="Research-led redesign of multi-step transaction flows for a Series D payments app. 42 heuristic issues, 6 competitors benchmarked, 35+ screens.">
+<meta name="twitter:image" content="https://yesha-design-website.vercel.app/assets/images/og-cover.png">
+<noscript></noscript>
+<meta name="theme-color" content="#09090a">
+<meta name="description" content="Research-led redesign of multi-step transaction flows for a Series D payments app. 42 heuristic issues, 6 competitors benchmarked, 35+ screens.">
+<meta property="og:site_name" content="Yesha Niranjan">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/case-study.css">
+</head>
+<body class="case-page">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="progress-bar" id="progressBar"></div><aside aria-label="Primary navigation" class="master-sidebar">
+<a class="master-logo" href="index.html">YES-HA</a>
+<nav class="master-nav">
+<a href="index.html">Home</a><a class="active" href="work.html">Works</a><a href="playground.html">Playground</a><a href="hot-takes.html">Hot Takes</a><a href="about.html">About</a><a href="connect.html">Connect</a>
+</nav><div class="master-context">Ring · Fintech<br/>2M+ users</div></aside>
+<header class="mobile-bar"><a class="mobile-logo" href="index.html">YES-HA</a><button aria-expanded="false" class="mobile-menu-btn" data-mobile-menu="">Menu</button></header>
+<nav class="mobile-panel" data-mobile-panel=""><a href="index.html">Home</a><a class="active" href="work.html">Works</a><a href="playground.html">Playground</a><a href="hot-takes.html">Hot Takes</a><a href="about.html">About</a><a href="connect.html">Connect</a><span class="mobile-context">Ring · Fintech<br/>2M+ users</span></nav>
+
+
+
+<main class="main" id="main">
+<div class="cs-hero">
+<a class="cs-back" href="work.html">← Back to Works</a>
+<span class="cs-hero-tag">Consumer Fintech · Transaction Flow · Research-Led Redesign</span>
+<h1 class="cs-hero-title">Redesigning Trust<br/>for 2 Million Users</h1>
+<p class="cs-hero-sub">Redesigned multi-step financial transaction flows and bank aggregator integrations for a Series D payments app — by auditing what was actually breaking, benchmarking 6 competitors, and mapping the personas nobody had clearly defined.</p>
+<div class="cs-chips">
+<span class="cs-chip">42 Heuristic Issues</span>
+<span class="cs-chip">6 Competitors Benchmarked</span>
+<span class="cs-chip">2M+ Users</span>
+<span class="cs-chip">35+ Screens Redesigned</span>
+<span class="cs-chip">Product Designer</span>
+<span class="cs-chip">Apr – Aug 2023 · 5 months</span>
+</div>
+<img alt="Ring — Pay With Ring app redesign" class="cs-hero-img" loading="eager" fetchpriority="high" src="assets/images/img-ring.png"/>
+</div>
+<nav class="mobile-toc" id="mobileToc">
+<a class="mobile-toc-pill active" href="#s-summary">Summary</a>
+<a class="mobile-toc-pill" href="#s-brief">The Brief</a>
+<a class="mobile-toc-pill" href="#s-personas">Personas</a>
+<a class="mobile-toc-pill" href="#s-competitive">Competitive</a>
+<a class="mobile-toc-pill" href="#s-audit">The Audit</a>
+<a class="mobile-toc-pill" href="#s-redesign">Redesign</a>
+<a class="mobile-toc-pill" href="#s-roadmap">Roadmap</a>
+<a class="mobile-toc-pill" href="#s-reflection">Reflection</a>
+</nav>
+<div class="cs-body">
+<nav class="toc" id="toc">
+<div class="toc-project">Ring — Pay With Ring</div>
+<a class="toc-link active" href="#s-summary">Executive Summary</a>
+<a class="toc-link" href="#s-brief">The Brief</a>
+<a class="toc-link" href="#s-personas">Who Was Actually Failing</a>
+<a class="toc-link" href="#s-competitive">The Competitive Lens</a>
+<a class="toc-link" href="#s-audit">What the Audit Revealed</a>
+<a class="toc-link" href="#s-redesign">Redesigning the Critical Path</a>
+<a class="toc-link" href="#s-roadmap">The Roadmap Shift</a>
+<a class="toc-link" href="#s-reflection">What It Proved</a>
+</nav>
+<article class="cs-content">
+<!-- 1. Summary -->
+<div class="cs-section" id="s-summary">
+<span class="section-eyebrow">01 — Executive Summary</span>
+<h2 class="section-title">2 Million Users. One Flow Nobody Had Mapped End-to-End.</h2>
+<p class="section-hook">Ring is Kissht's consumer-facing credit and payments app. By the time I joined, the product had scaled to 2M+ users. But the experience hadn't kept pace.</p>
+<div class="impact-grid">
+<div class="impact-item"><span class="impact-num">42</span><span class="impact-label">Heuristic issues documented across 8 UI parameters</span></div>
+<div class="impact-item"><span class="impact-num">6</span><span class="impact-label">Fintech products competitively benchmarked</span></div>
+<div class="impact-item"><span class="impact-num">2M+</span><span class="impact-label">Users impacted by disbursement flow redesign</span></div>
+<div class="impact-item"><span class="impact-num">11</span><span class="impact-label">Critical severity issues requiring immediate action</span></div>
+<div class="impact-item"><span class="impact-num">35+</span><span class="impact-label">Screens redesigned across disbursement flow</span></div>
+<div class="impact-item"><span class="impact-num">2</span><span class="impact-label">Product roadmap priorities directly shaped by research</span></div>
+</div>
+<div class="section-body">
+<p><strong>The Mission:</strong> Redesign multi-step financial transaction flows and bank aggregator integrations for a Series D payments app — by auditing what was actually breaking, benchmarking 6 competitors, and mapping the personas nobody had clearly defined.</p>
+<p><strong>The Role:</strong> Product Designer · Led research · 3 designers · Apr–Aug 2023 · 5 months · Kissht — Pay With Ring.</p>
+</div>
+<div class="tag-row">
+<span class="tag">Heuristic Evaluation</span>
+<span class="tag">Persona Research</span>
+<span class="tag">Competitive Benchmarking</span>
+<span class="tag">Transaction Flow Design</span>
+<span class="tag">KYC Flow Design</span>
+<span class="tag">Consumer Fintech</span>
+</div>
+</div>
+<!-- 2. Brief -->
+<div class="cs-section" id="s-brief">
+<span class="section-eyebrow">02 — The Brief</span>
+<h2 class="section-title">2 Million Users. One Flow Nobody Had Mapped.</h2>
+<p class="section-hook">The disbursement flow was generating a disproportionate number of ops tickets. Users were getting stuck. The team knew something was wrong. Nobody had mapped exactly what.</p>
+<div class="section-body">
+<p>The disbursement flow — the critical moment when a user applies for a Power Loan and money actually reaches their bank account — was the breaking point. My brief was technically about transaction flows and bank aggregator integrations.</p>
+<p>What I actually walked into was <strong>a product that had grown screen by screen without a consistent design system holding it together.</strong> And the cracks were showing exactly where users could least afford them — at the moment of financial commitment.</p>
+</div>
+<div class="pull-quote"><p>"The disbursement flow wasn't just a UX problem. It was a trust problem. At the moment a user is about to receive money, any confusion, any inconsistency, any dead end — they bail. And when they bail, the business loses the user."</p></div>
+<div class="img-placeholder"><span>ring-1</span><small>App home + Power Loan entry screens</small></div>
+</div>
+<!-- 3. Personas -->
+<div class="cs-section" id="s-personas">
+<span class="section-eyebrow">03 — Persona Research</span>
+<h2 class="section-title">Who Was Actually Failing</h2>
+<p class="section-hook">Four archetypes. Wildly different mental models of money. The existing personas were thin — I redefined them across four user types, each with distinct financial literacy, tech comfort, and tolerance for process friction.</p>
+<div class="persona-grid">
+<div class="persona-card">
+<div class="persona-name">Neha Gupta, 27</div>
+<div class="persona-desc">Salaried · Call centre · First-time borrower. Needs guidance through every stage. Fears fraud. Doesn't understand NACH or KYC. Wants flexibility in repayment dates and no hidden fees.</div>
+<span class="persona-tag">Digitally anxious</span>
+</div>
+<div class="persona-card">
+<div class="persona-name">Ashwin Patel, 38</div>
+<div class="persona-desc">Self-employed · Small business owner. Managing multiple EMIs simultaneously. Needs full fee transparency upfront. Can't wait for long approvals. Demands logic, not hand-holding.</div>
+<span class="persona-tag">Transparency-hungry</span>
+</div>
+<div class="persona-card">
+<div class="persona-name">Varsha Pandya, 22</div>
+<div class="persona-desc">Freelancer · Gen Z · Lifestyle borrower. Zero paperwork expectation. Wants instant disbursal and automated payments. 15-day repayment cycle feels too short. Loyalty perks matter.</div>
+<span class="persona-tag">Zero-friction expectation</span>
+</div>
+<div class="persona-card">
+<div class="persona-name">Hemkant Rao, 58</div>
+<div class="persona-desc">Retired · Pension income · Low-tech. Needs co-borrower support. Frustrated by long KYC processes. Wants consolidated loan tracking and terms explained in plain language.</div>
+<span class="persona-tag">Trust-first user</span>
+</div>
+</div>
+<div class="section-body">
+<p>What this mapping revealed wasn't just four different users — it was <strong>four completely different definitions of "this process makes sense."</strong> What feels transparent to Ashwin is overwhelming to Neha. What feels fast to Varsha is reckless to Hemkant. A single redesign had to hold all of them.</p>
+</div>
+<div class="img-placeholder"><span>ring-2</span><small>Persona documentation / research artifacts</small></div>
+</div>
+<!-- 4. Competitive -->
+<div class="cs-section" id="s-competitive">
+<span class="section-eyebrow">04 — Competitive Benchmarking</span>
+<h2 class="section-title">The Competitive Lens</h2>
+<p class="section-hook">I led three designers across six products to find what Ring was missing — not to copy what competitors did well, but to expose the gap between user expectations and what Ring was delivering.</p>
+<div class="section-body">
+<p>I organized a structured competitive benchmarking exercise. I assigned three designers to different workflow tracks and mapped how competing fintech products handled the same critical moments:</p>
+</div>
+<div class="flow-strip">
+<span class="flow-step">Loan application flows</span>
+<span class="flow-step">KYC patterns</span>
+<span class="flow-step">Disbursement states</span>
+<span class="flow-step">Error handling</span>
+<span class="flow-step">Account management</span>
+<span class="flow-step">Transaction history</span>
+</div>
+<div class="section-body">
+<p>The finding that kept surfacing: <strong>every competitor had clearer disbursement state communication.</strong> Ring left users in the dark at the exact moment they most needed to know what was happening with their money.</p>
+</div>
+<div class="pull-quote"><p>"The competitive analysis didn't just show us what to fix. It gave us the language to prioritize it. 'Everyone else tells users where their money is' is a harder argument to ignore than 'our disbursement states need work.'"</p></div>
+<div class="img-placeholder"><span>ring-3</span><small>Competitive analysis matrix / benchmarking artifacts</small></div>
+</div>
+<!-- 5. Audit -->
+<div class="cs-section" id="s-audit">
+<span class="section-eyebrow">05 — Heuristic Evaluation</span>
+<h2 class="section-title">What the Audit Revealed</h2>
+<p class="section-hook">42 issues. 11 critical. Consistency was the silent killer — the product was actively breaking users' mental models by showing the same information differently depending on how they navigated to it.</p>
+<div class="severity-grid">
+<div class="severity-item"><span class="severity-num">11</span><span class="severity-label">High severity — immediate roadmap action required</span></div>
+<div class="severity-item"><span class="severity-num">15</span><span class="severity-label">Medium severity — impacting flow comprehension</span></div>
+<div class="severity-item"><span class="severity-num">16</span><span class="severity-label">Low severity — design system cleanup flagged</span></div>
+</div>
+<div class="section-body">
+<p>The biggest heuristic violation by weight was <strong>Consistency &amp; Standards at 24%</strong> — components recreated rather than reused, patterns diverged over time. Users paid the price at the moments that mattered most.</p>
+</div>
+<div class="finding-list">
+<div class="finding-item high">
+<div class="finding-header"><span class="finding-title">Homepage banners — informative, not actionable</span><span class="finding-badge high">High</span></div>
+<div class="finding-meta">Visibility of system status · Visual Design</div>
+<div class="finding-desc">Pending actions buried in banner copy. Users missing critical steps. Recommendation: surface actionable states prominently.</div>
+</div>
+<div class="finding-item high">
+<div class="finding-header"><span class="finding-title">Frozen limit screen blocks user view entirely</span><span class="finding-badge high">High</span></div>
+<div class="finding-meta">Flexibility &amp; Efficiency of Use · Navigation</div>
+<div class="finding-desc">Different behavior when multiple tasks pending. Users can't access other details while in frozen state. Fix: show data in disabled mode.</div>
+</div>
+<div class="finding-item high">
+<div class="finding-header"><span class="finding-title">Add Bank — 2 designs, 2 entry points</span><span class="finding-badge high">High</span></div>
+<div class="finding-meta">Consistency &amp; Standards · Navigation</div>
+<div class="finding-desc">Same page with completely different visual treatment depending on how user arrived. Recommendation: consolidate to single consistent design.</div>
+</div>
+<div class="finding-item high">
+<div class="finding-header"><span class="finding-title">Transaction details — inconsistent across nav paths</span><span class="finding-badge high">High</span></div>
+<div class="finding-meta">Consistency &amp; Standards · Information Architecture</div>
+<div class="finding-desc">2 different transaction detail pages with 2 different header styles. Users can't build a stable mental model.</div>
+</div>
+</div>
+<div class="img-placeholder"><span>ring-4</span><small>Heuristic evaluation documentation / severity matrix</small></div>
+</div>
+<!-- 6. Redesign -->
+<div class="cs-section" id="s-redesign">
+<span class="section-eyebrow">06 — The Redesign</span>
+<h2 class="section-title">Redesigning the Critical Path</h2>
+<p class="section-hook">35+ screens. One goal: money reaches the user without confusion. The disbursement flow was identified as highest-priority based on the combined signal from persona research, competitive analysis, and heuristic findings.</p>
+<div class="section-body">
+<p>The redesign covered the full Power Loan application journey — every screen, every state:</p>
+</div>
+<div class="flow-strip">
+<span class="flow-step">Offer entry + promotion</span>
+<span class="flow-step">3-step profile completion</span>
+<span class="flow-step">PAN + Aadhaar KYC</span>
+<span class="flow-step">Video KYC handoff</span>
+<span class="flow-step">Loan amount + tenure</span>
+<span class="flow-step">Bank details + auto-debit</span>
+<span class="flow-step">KFS + T&amp;C acceptance</span>
+<span class="flow-step">Disbursement states ×4</span>
+<span class="flow-step">Error + rejection states</span>
+</div>
+<div class="section-body">
+<p>Every design decision anchored to the personas. <strong>For Neha:</strong> clear progress indicators, plain-language consent copy. <strong>For Ashwin:</strong> full fee breakdown upfront before commitment. <strong>For Varsha:</strong> momentum-preserving transitions, no unnecessary gates. <strong>For Hemkant:</strong> trust signals at every bank handoff, reassurance copy during processing waits.</p>
+</div>
+<div class="pull-quote"><p>"The disbursement 'on hold' state was a blank wall in the original design. Users had no idea if something had gone wrong. The redesign gave them a status, a next action, and a contact path. That single screen change reduced a significant category of support tickets."</p></div>
+<div class="img-placeholder"><span>ring-5</span><small>Disbursement flow redesign / state variants</small></div>
+</div>
+<!-- 7. Roadmap -->
+<div class="cs-section" id="s-roadmap">
+<span class="section-eyebrow">07 — Business Impact</span>
+<h2 class="section-title">The Roadmap Shift</h2>
+<p class="section-hook">Research findings didn't just inform design. They changed what got built next.</p>
+<div class="impact-grid">
+<div class="impact-item"><span class="impact-num">2</span><span class="impact-label">Roadmap priorities directly shaped by audit findings</span></div>
+<div class="impact-item"><span class="impact-num">↓</span><span class="impact-label">Ops ticket volume for disbursement-related queries</span></div>
+<div class="impact-item"><span class="impact-num">Q3</span><span class="impact-label">Account management backlog reprioritized within quarter</span></div>
+</div>
+<div class="section-body">
+<p>The combined output of persona research, competitive benchmarking, and heuristic evaluation gave the product team something they hadn't had before: <strong>a ranked, evidence-backed list of what to fix and in what order.</strong></p>
+<p>The disbursement flow moved to the top of the roadmap — not because a designer said it should, but because the data made the case. Two specific product areas — disbursement state communication and the Add Bank consistency fix — became Q3 priorities directly traceable to audit findings.</p>
+</div>
+</div>
+<!-- 8. Reflection -->
+<div class="cs-section" id="s-reflection">
+<span class="section-eyebrow">08 — Reflection</span>
+<h2 class="section-title">What It Proved</h2>
+<p class="section-hook">You don't redesign screens. You diagnose what's costing the business.</p>
+<div class="section-body">
+<p>Ring was my first time pairing a full heuristic evaluation with competitive benchmarking on a product already at scale. The lesson that stuck: <strong>at 2M users, a UI inconsistency isn't an aesthetic problem — it's a trust problem that compounds across millions of interactions.</strong></p>
+<p>Every time a user hit the inconsistent Add Bank screen, they had to relearn. Every time a disbursement sat silently on hold, a support ticket was filed and a user's confidence eroded.</p>
+<p>What I'm most proud of isn't the screens I redesigned. It's that I came in, audited the whole product, surfaced the pattern nobody had named, and gave the team a prioritization framework they could act on. <strong>The design work followed the research. That sequence — understand the system before touching the interface — is something I apply to every engagement now.</strong></p>
+<p>The four personas I redefined are still the archetypes the team references. The heuristic findings directly shaped what shipped next. Five months. Real impact.</p>
+</div>
+<div class="pull-quote"><p>"The four personas I redefined are still the archetypes the team references. The heuristic findings directly shaped what shipped next. Five months. Real impact."</p></div>
+<div class="tag-row" style="margin-top:32px;">
+<span class="tag">42 heuristic issues documented</span>
+<span class="tag">6 competitors benchmarked</span>
+<span class="tag">2M+ users impacted</span>
+<span class="tag">35+ screens redesigned</span>
+<span class="tag">Research-led roadmap</span>
+<span class="tag">Disbursement flow redesign</span>
+</div>
+</div>
+</article>
+</div>
+<div class="bottom-bar">
+<a class="bottom-back" href="work.html">← All Works</a>
+<a class="bottom-next" href="lucid.html">
+<span class="bottom-next-label">Next Case Study</span>
+<span class="bottom-next-title">The Brief That Didn't Exist Yet →</span>
+</a>
+<a class="bottom-connect" href="connect.html">Connect</a>
+</div>
+</main>
+
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
+</body>
+</html>

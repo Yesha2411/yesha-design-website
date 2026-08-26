@@ -1,0 +1,54 @@
+/* YES-HA — WORKS INDEX. Depends on tokens.css + base.css + pages.css. */
+
+.work-index{border-top:1px solid var(--line)}
+
+.work-row{
+  position:relative;isolation:isolate;overflow:hidden;
+  display:grid;grid-template-columns:64px minmax(0,1fr) 170px 44px;
+  gap:clamp(16px,3vw,40px);align-items:center;
+  padding:clamp(26px,3.4vw,40px) var(--gutter);
+  border-bottom:1px solid var(--line);
+  transition:color var(--dur) var(--ease);
+}
+/* the site's signature interaction: a hairline row that fills
+   from the floor up, inverting to light on hover */
+.work-row::before{
+  content:"";position:absolute;inset:0;z-index:-1;background:var(--text);
+  transform:translateY(101%);transition:transform var(--dur) var(--ease-out);
+}
+.work-row:hover::before,.work-row:focus-visible::before{transform:none}
+.work-row:hover,.work-row:focus-visible{color:var(--accent-ink)}
+.work-row:hover .work-num,.work-row:hover .work-desc,.work-row:hover .work-tags,
+.work-row:hover .work-metric i{color:#3a3a3e}
+.work-row:hover .work-go{transform:translate(5px,-5px)}
+
+.work-num{font:500 var(--t-label) var(--rounded);letter-spacing:.14em;color:var(--faint);align-self:start;padding-top:9px;transition:color var(--dur) var(--ease)}
+.work-main{display:block;min-width:0}
+.work-name{display:block;font-size:clamp(30px,3.6vw,54px);line-height:1;letter-spacing:var(--track-title);margin-bottom:12px}
+.work-desc{display:block;font-size:var(--t-small);line-height:1.6;color:var(--muted);max-width:56ch;transition:color var(--dur) var(--ease)}
+.work-tags{display:block;margin-top:12px;font:500 var(--t-label) var(--rounded);letter-spacing:.1em;text-transform:uppercase;color:var(--faint);transition:color var(--dur) var(--ease)}
+
+.work-metric{display:block;text-align:right}
+.work-metric b{display:block;font-size:clamp(22px,2.2vw,32px);font-weight:400;letter-spacing:-.04em}
+.work-metric i{display:block;margin-top:5px;font:500 var(--t-label)/1.4 var(--rounded);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);transition:color var(--dur) var(--ease)}
+
+.work-go{font-size:22px;text-align:right;transition:transform var(--dur) var(--ease)}
+
+.work-outro{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;padding:clamp(48px,6vw,84px) var(--gutter);border-bottom:1px solid var(--line)}
+.work-outro p{font-size:var(--t-lead);color:var(--muted);max-width:46ch;margin:0}
+.work-outro a{border-bottom:1px solid var(--line-strong);transition:border-color var(--dur-fast) var(--ease)}
+.work-outro a:hover{border-color:var(--accent)}
+
+
+@media (max-width:900px){
+  .work-row{grid-template-columns:auto 1fr;grid-template-areas:"num go" "main main" "metric metric";gap:14px;padding:28px var(--gutter)}
+  .work-num{grid-area:num;padding-top:0}
+  .work-go{grid-area:go}
+  .work-main{grid-area:main}
+  .work-metric{grid-area:metric;text-align:left;padding-top:6px;border-top:1px solid var(--line);margin-top:4px}
+  .work-metric b{display:inline;font-size:20px}
+  .work-metric i{display:inline;margin-left:8px}
+  /* no hover on touch — keep rows legible instead of inverting */
+  .work-row::before{display:none}
+  .work-outro{flex-direction:column;align-items:flex-start}
+}

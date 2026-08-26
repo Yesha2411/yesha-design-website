@@ -1,0 +1,29 @@
+/* ===========================================================
+   YES-HA — PAGE UTILITIES
+   Shared helpers for the standalone pages (Works, Playground,
+   Connect, About, Hot Takes). Case studies use case-study.css.
+   NOTE: this file must never set --sidebar. base.css zeroes it
+   at <=900px; overriding it on `body` silently breaks that.
+   =========================================================== */
+
+.page-shell{min-height:100vh;display:flex;flex-direction:column}
+.page-hero{padding:44px var(--gutter) 46px;border-bottom:1px solid var(--line)}
+.page-kicker{display:block;font-size:var(--t-label);letter-spacing:var(--track-label);text-transform:uppercase;color:var(--faint)}
+.page-title{font-size:var(--t-hero);line-height:.88;letter-spacing:var(--track-hero);font-weight:400;margin:48px 0 22px}
+.page-sub{font-size:var(--t-lead);color:var(--muted);max-width:560px;line-height:1.55}
+.page-meta{margin-top:28px;font:500 var(--t-label) var(--rounded);letter-spacing:.12em;color:var(--faint);text-transform:uppercase}
+
+/* --- "In progress" route ---------------------------------
+   An empty screen is an invitation, not an apology. -------- */
+.soon{display:grid;grid-template-columns:64px minmax(0,1fr);gap:clamp(16px,3vw,40px);padding:clamp(48px,7vw,96px) var(--gutter);border-bottom:1px solid var(--line)}
+.soon-rule{border-top:1px solid var(--accent);margin-top:16px;height:1px}
+.soon-copy h2{font-size:var(--t-head);font-weight:400;letter-spacing:var(--track-title);margin:0 0 16px}
+.soon-copy p{font-size:var(--t-lead);line-height:1.6;color:var(--muted);max-width:52ch;margin:0}
+.soon-actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px 26px;margin-top:34px}
+.soon-link{font-size:var(--t-small);color:var(--muted);border-bottom:1px solid var(--line-strong);padding-bottom:2px;transition:color var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease)}
+.soon-link:hover{color:var(--text);border-color:var(--accent)}
+@media (max-width:900px){.soon{grid-template-columns:1fr}.soon-rule{width:44px}}
+
+/* Pill CTA — shared by Works, About, Hot Takes and 404. */
+.work-cta{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border:1px solid var(--line-strong);border-radius:999px;font-size:var(--t-small);white-space:nowrap;border-bottom-width:1px;transition:background var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease)}
+.work-cta:hover{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}

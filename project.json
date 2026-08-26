@@ -1,0 +1,50 @@
+{
+  "name": "yesha-design-website",
+  "brand": "YES-HA",
+  "pages": [
+    "index.html",
+    "work.html",
+    "playground.html",
+    "hot-takes.html",
+    "about.html",
+    "connect.html"
+  ],
+  "case_studies": [
+    "lucid.html",
+    "navigator.html",
+    "ring.html",
+    "philips.html",
+    "lead.html",
+    "oac.html"
+  ],
+  "system": {
+    "load_order": [
+      "assets/css/tokens.css",
+      "assets/css/base.css",
+      "<page>.css"
+    ],
+    "page_css": {
+      "index.html": "assets/css/home.css",
+      "work.html": "assets/css/works.css",
+      "connect.html": "assets/css/connect.css",
+      "playground.html": "assets/css/playground.css",
+      "about.html": "assets/css/pages.css",
+      "hot-takes.html": "assets/css/pages.css",
+      "case_studies": "assets/css/case-study.css"
+    },
+    "shared_js": [
+      "assets/js/site.js",
+      "assets/js/motion.js"
+    ],
+    "sidebar_width": "184px",
+    "accent": "#dafe20",
+    "bg": "#09090a"
+  },
+  "hero_video": "https://www.youtube.com/embed/QEFWOqeFDp0",
+  "deploy": {
+    "host": "vercel",
+    "clean_urls": true,
+    "build_command": null,
+    "output_dir": null
+  }
+}
