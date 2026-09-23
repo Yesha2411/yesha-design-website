@@ -57,8 +57,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"></noscript>
 <!-- Preloader gate: must run before first paint, so it is the one inline script.
-     Plays the boot sequence on the first home-page load of a visit; ?boot forces it. See assets/js/preloader.js -->
-<script>(function(r){try{var f=/[?&]boot(=|&|$)/.test(location.search);if(!f&&(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('yn-preloader-seen')==='1'))return;r.classList.add('yn-pl-on','yn-pl-lock');setTimeout(function(){if(!window.ynPreloaderDone)r.classList.remove('yn-pl-on','yn-pl-lock')},15000)}catch(e){}})(document.documentElement);</script>
+     Plays the boot sequence on every direct arrival at the home page (typed URL, bookmark,
+     outside link, refresh). Skips when coming from another page of this site, on back/forward,
+     and under reduced motion. ?boot forces it. See assets/js/preloader.js -->
+<script>(function(r){try{if(!/[?&]boot(=|&|$)/.test(location.search)){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var n=performance.getEntriesByType('navigation')[0],t=n?n.type:'navigate';if(t==='back_forward')return;if(t!=='reload'&&document.referrer&&new URL(document.referrer).origin===location.origin)return}r.classList.add('yn-pl-on','yn-pl-lock');setTimeout(function(){if(!window.ynPreloaderDone)r.classList.remove('yn-pl-on','yn-pl-lock')},15000)}catch(e){}})(document.documentElement);</script>
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/home.css">

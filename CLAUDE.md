@@ -117,14 +117,16 @@ Any page you touch must still satisfy all of these:
 
 ### 5a. Home-page preloader
 
-The first load of `index.html` in a visit plays a ~6s boot sequence (count 0→100,
-status lines at 25/55/80%, then the page reveals). It lives on the home page only —
-no other page loads it. Three pieces in `index.html`:
+Every direct arrival at the home page — typed URL, bookmark, outside link, refresh —
+plays a ~6s boot sequence (count 0→100, status lines at 25/55/80%, then the page
+reveals). It lives on the home page only — no other page loads it. Three pieces in
+`index.html`:
 
 1. **An inline gate script in `<head>`**, just before `tokens.css`. This is the one
    permitted inline script: it must decide *before first paint* whether the sequence
-   plays, or a return visit would flash the overlay. It skips under reduced motion and
-   once `sessionStorage['yn-preloader-seen']` is set; `?boot` in the URL forces it.
+   plays, or a skipped visit would flash the overlay. It skips when the visitor comes
+   from another page of this site (same-origin referrer), on back/forward, and under
+   reduced motion; `?boot` in the URL forces it.
 2. `<div id="yn-preloader" class="yn-pl"></div>` directly after the skip link.
 3. `<script src="assets/js/preloader.js" defer></script>` before `site.js`.
 

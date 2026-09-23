@@ -1,6 +1,6 @@
 /* ===========================================================
    YES-HA — PRELOADER (home page only)
-   Boot sequence for the first home-page load of a visit: a
+   Boot sequence for every direct arrival at the home page: a
    "Consequence-First" protocol that counts 0 → 100, types a
    status line at each milestone, holds on 100, then lifts to
    reveal the page.
@@ -8,9 +8,10 @@
    Wired in index.html with three pieces:
    1. An inline gate in <head> decides BEFORE first paint whether
       the sequence plays and adds .yn-pl-on + .yn-pl-lock to
-      <html>. It plays once per visit (per tab, via
-      sessionStorage), never under reduced motion, and always
-      with ?boot in the URL (handy for testing).
+      <html>. It plays on a typed URL, bookmark, outside link or
+      refresh; it skips when the visitor comes from another page
+      of this site, on back/forward, and under reduced motion.
+      ?boot in the URL always forces it (handy for testing).
    2. <div id="yn-preloader" class="yn-pl"></div> right after
       the skip link. Hidden unless .yn-pl-on is present.
    3. This file, deferred, before site.js. It builds the
@@ -42,8 +43,7 @@
     ],
     finalStatus: 'Verified: Human Judgment Retained.', // null = keep the 80% line
     waitForWindowLoad: true,  // park at 99% until images have loaded…
-    maxWait: 9000,            // …but never longer than this (ms)
-    storageKey: 'yn-preloader-seen' // must match the inline gate in <head>
+    maxWait: 9000             // …but never longer than this (ms)
   };
 
   const root = document.documentElement;
@@ -68,7 +68,7 @@
     root.classList.remove('yn-pl-on');
   };
 
-  /* The gate decided not to play (already seen this visit, reduced motion, no storage) */
+  /* The gate decided not to play (in-site navigation, back/forward, reduced motion) */
   if (!root.classList.contains('yn-pl-on')) {
     removeOverlay();
     announceDone();
@@ -221,7 +221,6 @@
 
     const exit = () => {
       removeEventListener('keydown', onKey);
-      try { sessionStorage.setItem(CONFIG.storageKey, '1'); } catch (e) { /* storage blocked: gate skips it anyway */ }
       el.classList.add('is-exiting');
       announceDone();                                  // page reveals start as the overlay fades
       const fade = parseFloat(getComputedStyle(el).transitionDuration) * 1000 || 0;
