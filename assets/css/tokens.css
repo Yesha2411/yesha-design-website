@@ -68,6 +68,12 @@
   --dur-fast: .2s;
   --dur: .38s;
   --dur-slow: .7s;
+
+  /* --- Preloader ----------------------------------------- */
+  /* Home-page boot sequence (assets/js/preloader.js). Runs in
+     Signal Lime: loading progress is system state. */
+  --pl-accent: var(--accent);
+  --mono: ui-monospace, "SF Mono", "Geist Mono", "JetBrains Mono", "Cascadia Code", Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 /* Motion is a layer, never a dependency. */

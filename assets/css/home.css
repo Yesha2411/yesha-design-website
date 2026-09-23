@@ -595,3 +595,100 @@
 .hero-video iframe{width:100%;height:100%;min-height:540px;border:0;display:block}
 @media (max-width:900px){.video-facade,.hero-video iframe{min-height:390px}}
 @media (max-width:560px){.video-facade,.hero-video iframe{min-height:310px}}
+
+/* =========================================================
+   PRELOADER — boot sequence, first home-page load of a visit
+   The inline gate in index.html <head> adds .yn-pl-on and
+   .yn-pl-lock before first paint when it should play, so it
+   never flashes on a return visit. preloader.js builds the
+   markup, runs the count, then lifts. Colour: --pl-accent
+   in tokens.css.
+   ========================================================= */
+.yn-pl{display:none}
+.yn-pl-on .yn-pl{
+  position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;
+  background:var(--bg);color:var(--text);font:400 16px/1.4 var(--mono);
+  isolation:isolate;overflow:hidden;transition:opacity var(--dur-slow) var(--ease);
+}
+/* Freeze scroll and hold the page's own entrance reveals until the overlay lifts */
+.yn-pl-lock{overflow:hidden;scrollbar-gutter:stable}
+.yn-pl-lock body{overflow:hidden}
+.yn-pl-lock .reveal.visible{opacity:0;transform:translateY(18px)}
+
+/* depth: vignette, faint grain, and an accent haze that grows with progress */
+.yn-pl::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(0,0,0,.55) 100%)}
+.yn-pl::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.yn-pl__glow{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.25;background:radial-gradient(520px circle at 50% 48%,color-mix(in srgb,var(--pl-accent) 8%,transparent),transparent 62%)}
+
+/* corner telemetry — equal row height keeps all four corners on one line */
+.yn-pl__meta{position:absolute;display:flex;align-items:center;gap:.75em;height:20px;font-size:10.5px;line-height:1;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:var(--faint)}
+.yn-pl__meta--tl{top:max(24px,env(safe-area-inset-top));left:max(24px,env(safe-area-inset-left))}
+.yn-pl__meta--tr{top:max(24px,env(safe-area-inset-top));right:max(24px,env(safe-area-inset-right))}
+.yn-pl__meta--bl{bottom:max(24px,env(safe-area-inset-bottom));left:max(24px,env(safe-area-inset-left))}
+.yn-pl__meta--br{bottom:max(24px,env(safe-area-inset-bottom));right:max(24px,env(safe-area-inset-right))}
+.yn-pl__brand{color:var(--text);letter-spacing:.22em}
+.yn-pl__val{color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* "Human override" — skips to the reveal. ::before pads the tap target to 44px */
+.yn-pl__skip{all:unset;position:relative;display:inline-flex;align-items:center;gap:.75em;cursor:pointer;transition:color var(--dur-fast) var(--ease)}
+.yn-pl__skip::before{content:"";position:absolute;inset:-13px -10px}
+.yn-pl__skip:hover,.yn-pl__skip:focus-visible{color:var(--text)}
+.yn-pl__skip:focus-visible{outline:2px solid var(--pl-accent);outline-offset:6px;border-radius:2px}
+.yn-pl__led{width:6px;height:6px;border-radius:50%;background:var(--pl-accent);animation:yn-pl-pulse 1.8s ease-out infinite}
+.yn-pl__key{padding:3px 5px;border:1px solid var(--line-strong);border-radius:3px;letter-spacing:.08em;color:var(--muted)}
+
+/* core module: label, count, progress line, status */
+.yn-pl__core{position:relative;width:min(480px,calc(100vw - 32px));padding:44px 40px 34px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform var(--dur-slow) var(--ease),filter var(--dur-slow) var(--ease)}
+.yn-pl__frame{position:absolute;inset:0;pointer-events:none;background-repeat:no-repeat;background:
+  linear-gradient(var(--line-strong),var(--line-strong)) left top/12px 1px no-repeat,
+  linear-gradient(var(--line-strong),var(--line-strong)) left top/1px 12px no-repeat,
+  linear-gradient(var(--line-strong),var(--line-strong)) right top/12px 1px no-repeat,
+  linear-gradient(var(--line-strong),var(--line-strong)) right top/1px 12px no-repeat,
+  linear-gradient(var(--line-strong),var(--line-strong)) left bottom/12px 1px no-repeat,
+  linear-gradient(var(--line-strong),var(--line-strong)) left bottom/1px 12px no-repeat,
+  linear-gradient(var(--line-strong),var(--line-strong)) right bottom/12px 1px no-repeat,
+  linear-gradient(var(--line-strong),var(--line-strong)) right bottom/1px 12px no-repeat}
+.yn-pl__label{margin-bottom:18px;font-size:10.5px;line-height:1;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+/* tabular figures + fixed 3-digit width = the number never jitters */
+.yn-pl__pct{position:relative;font:300 clamp(72px,19vw,144px)/.9 var(--geist);letter-spacing:-.045em;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;color:var(--text)}
+.yn-pl__ghost{opacity:.16}
+.yn-pl__unit{position:absolute;left:100%;top:.1em;margin-left:.12em;font:400 .22em var(--mono);letter-spacing:0;color:var(--pl-accent);text-shadow:0 0 14px color-mix(in srgb,var(--pl-accent) 50%,transparent)}
+.yn-pl__track{position:relative;width:100%;height:1px;margin-top:30px;background:var(--line)}
+.yn-pl__fill{position:absolute;inset:0;transform-origin:left center;transform:scaleX(0);background:linear-gradient(90deg,color-mix(in srgb,var(--pl-accent) 25%,transparent),var(--pl-accent));box-shadow:0 0 10px color-mix(in srgb,var(--pl-accent) 55%,transparent);transition:box-shadow var(--dur) ease}
+.yn-pl__head{position:absolute;top:50%;left:0;width:2px;height:9px;border-radius:1px;transform:translate(-50%,-50%);background:var(--pl-accent);box-shadow:0 0 8px 1px color-mix(in srgb,var(--pl-accent) 80%,transparent);transition:opacity var(--dur) ease}
+.yn-pl__tick{position:absolute;top:50%;width:1px;height:7px;transform:translate(-50%,-50%);background:var(--line-strong);transition:background-color var(--dur) ease,box-shadow var(--dur) ease}
+.yn-pl__tick.is-lit{background:var(--pl-accent);box-shadow:0 0 6px color-mix(in srgb,var(--pl-accent) 80%,transparent)}
+.yn-pl__status{margin-top:22px;font-size:clamp(11px,3.1vw,12.5px);line-height:1.6;letter-spacing:.02em;color:var(--pl-accent);text-shadow:0 0 14px color-mix(in srgb,var(--pl-accent) 35%,transparent);text-wrap:balance}
+.yn-pl__prompt{margin-right:.6em;color:var(--faint);text-shadow:none}
+.yn-pl__verb{font-weight:600}
+.yn-pl__obj{opacity:.8}
+.yn-pl__noise{opacity:.45}
+.yn-pl__nb{white-space:nowrap}
+.yn-pl__cursor{display:inline-block;width:.55em;height:1.1em;margin-left:.25em;vertical-align:-.22em;background:var(--pl-accent);box-shadow:0 0 10px color-mix(in srgb,var(--pl-accent) 60%,transparent);animation:yn-pl-blink 1.05s steps(1,end) infinite}
+.yn-pl__sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* states set by preloader.js: 100% reached → line flares; exit → fade, lift, soften */
+.yn-pl.is-complete .yn-pl__fill{box-shadow:0 0 18px color-mix(in srgb,var(--pl-accent) 90%,transparent)}
+.yn-pl.is-complete .yn-pl__head{opacity:0}
+.yn-pl.is-exiting{opacity:0;pointer-events:none}
+.yn-pl.is-exiting .yn-pl__core{transform:translateY(-10px) scale(.985);filter:blur(6px)}
+
+@keyframes yn-pl-blink{50%{opacity:0}}
+@keyframes yn-pl-pulse{
+  0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--pl-accent) 55%,transparent)}
+  100%{box-shadow:0 0 0 7px color-mix(in srgb,var(--pl-accent) 0%,transparent)}
+}
+@media (max-width:480px){
+  .yn-pl__meta--tl{top:max(16px,env(safe-area-inset-top));left:16px}
+  .yn-pl__meta--tr{top:max(16px,env(safe-area-inset-top));right:16px}
+  .yn-pl__meta--bl{bottom:max(16px,env(safe-area-inset-bottom));left:16px}
+  .yn-pl__meta--br{bottom:max(16px,env(safe-area-inset-bottom));right:16px}
+  .yn-pl__meta{font-size:9.5px;letter-spacing:.14em}
+  .yn-pl__core{padding:36px 20px 28px}
+  .yn-pl__status{min-height:3.2em}
+}
+@media (hover:none){.yn-pl__key{display:none}}
+@media (prefers-reduced-motion:reduce){
+  .yn-pl__cursor,.yn-pl__led{animation:none}
+  .yn-pl.is-exiting .yn-pl__core{transform:none;filter:none}
+}

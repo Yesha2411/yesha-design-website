@@ -36,6 +36,11 @@
       "assets/js/site.js",
       "assets/js/motion.js"
     ],
+    "page_js": {
+      "index.html": [
+        "assets/js/preloader.js"
+      ]
+    },
     "sidebar_width": "184px",
     "accent": "#dafe20",
     "bg": "#09090a"

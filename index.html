@@ -56,6 +56,9 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"></noscript>
+<!-- Preloader gate: must run before first paint, so it is the one inline script.
+     Plays the boot sequence on the first home-page load of a visit; ?boot forces it. See assets/js/preloader.js -->
+<script>(function(r){try{var f=/[?&]boot(=|&|$)/.test(location.search);if(!f&&(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('yn-preloader-seen')==='1'))return;r.classList.add('yn-pl-on','yn-pl-lock');setTimeout(function(){if(!window.ynPreloaderDone)r.classList.remove('yn-pl-on','yn-pl-lock')},15000)}catch(e){}})(document.documentElement);</script>
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/home.css">
@@ -88,6 +91,7 @@
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
+<div id="yn-preloader" class="yn-pl"></div>
 <div class="progress-bar" role="presentation"></div>
 
   <!-- ================= MASTER SIDEBAR ================= -->
@@ -381,6 +385,7 @@
       <footer class="content footer"><span>© 2026 Yesha Niranjan</span><span>Geist × SF Pro Rounded · Designed from thought to execution.</span></footer>
     </section>
   </main>
+<script src="assets/js/preloader.js" defer></script>
 <script src="assets/js/site.js" defer></script>
 <script src="assets/js/motion.js" defer></script>
 </body>
