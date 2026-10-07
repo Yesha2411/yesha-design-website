@@ -125,3 +125,49 @@
     }
   });
 })();
+
+/* --- Hero portrait reel ------------------------------------
+   Plays once when the hero is in view, after the page has
+   painted, then holds the finished portrait. Pause / Replay is
+   always available. Reduced motion and Data Saver never
+   autoplay: they get the finished-portrait still instead. --- */
+(() => {
+  const v = document.querySelector('[data-reel]');
+  if (!v) return;
+  const btn = document.querySelector('[data-reel-toggle]');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    !!(navigator.connection && navigator.connection.saveData);
+  const showStill = () => { if (!v.poster) v.poster = v.dataset.poster; };
+
+  const sync = () => {
+    if (!btn) return;
+    const word = v.ended ? 'Replay' : v.paused ? 'Play' : 'Pause';
+    btn.textContent = word;
+    btn.setAttribute('aria-label', word + ' portrait animation');
+  };
+  ['play', 'pause', 'ended'].forEach(e => v.addEventListener(e, sync));
+
+  if (btn) {
+    btn.hidden = false;
+    btn.addEventListener('click', () => {
+      if (!v.paused && !v.ended) return v.pause();
+      if (v.ended) v.currentTime = 0;
+      v.play().catch(showStill);
+    });
+    sync();
+  }
+
+  if (still) return showStill();
+
+  const start = () => {
+    v.preload = 'auto';
+    const play = () => v.play().catch(() => { showStill(); sync(); });
+    if (!('IntersectionObserver' in window)) return play();
+    new IntersectionObserver((es, o) => es.forEach(e => {
+      if (e.isIntersecting) { o.disconnect(); play(); }
+    }), { threshold: .4 }).observe(v);
+  };
+  const arm = () => 'requestIdleCallback' in window
+    ? requestIdleCallback(start, { timeout: 1500 }) : setTimeout(start, 300);
+  document.readyState === 'complete' ? arm() : addEventListener('load', arm, { once: true });
+})();

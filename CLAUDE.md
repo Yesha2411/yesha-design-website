@@ -45,7 +45,7 @@ one, propose it first — do not introduce it silently.
     │   ├── connect.css     connect.html only.
     │   └── playground.css  playground.html only.
     ├── js/
-    │   ├── site.js         Nav, progress, TOC, media fallback, video facade.
+    │   ├── site.js         Nav, progress, TOC, media fallback, video facade, hero portrait reel.
     │   ├── motion.js       Reveals, stagger, count-up, pointer magnetism.
     │   └── preloader.js    index.html only — boot sequence (see §5a).
     ├── images/             Project media, favicon, OG cover.

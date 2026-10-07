@@ -143,7 +143,13 @@
         </div>
 
         <div class="hero-visual hero-video" data-reveal>
-          <div class="video-facade" data-video-src="https://www.youtube.com/embed/QEFWOqeFDp0?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=QEFWOqeFDp0&amp;controls=0&amp;modestbranding=1&amp;rel=0&amp;playsinline=1" data-video-title="Featured motion reel" role="button" tabindex="0" aria-label="Play the featured motion reel"><span class="video-facade-label">Motion reel<span>Press to play</span></span></div>
+          <video class="hero-reel" data-reel muted playsinline preload="none" width="1080" height="1080"
+                 data-poster="assets/animations/portrait-reel-poster.jpg"
+                 aria-label="Animated portrait of Yesha Niranjan, drawn from line art to full colour">
+            <source src="assets/animations/portrait-reel.webm" type="video/webm">
+            <source src="assets/animations/portrait-reel.mp4" type="video/mp4">
+          </video>
+          <button class="reel-toggle" type="button" data-reel-toggle hidden>Play</button>
         </div>
       </div>
       <div class="scroll-cue">Scroll to explore</div>
