@@ -127,32 +127,33 @@
 })();
 
 /* --- Hero portrait reel ------------------------------------
-   Plays once when the hero is in view, after the page has
-   painted, then holds the finished portrait. Pause / Replay is
-   always available. Reduced motion and Data Saver never
-   autoplay: they get the finished-portrait still instead. --- */
+   Loops while the hero is on screen (starts after the page has
+   painted, pauses when scrolled away). Pause / Play is always
+   available and a manual pause sticks. Reduced motion and Data
+   Saver never autoplay: they get the finished-portrait still. */
 (() => {
   const v = document.querySelector('[data-reel]');
   if (!v) return;
   const btn = document.querySelector('[data-reel-toggle]');
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches ||
     !!(navigator.connection && navigator.connection.saveData);
+  let userPaused = still, inView = false;
   const showStill = () => { if (!v.poster) v.poster = v.dataset.poster; };
+  const play = () => { v.preload = 'auto'; v.play().catch(() => { showStill(); sync(); }); };
 
   const sync = () => {
     if (!btn) return;
-    const word = v.ended ? 'Replay' : v.paused ? 'Play' : 'Pause';
+    const word = v.paused ? 'Play' : 'Pause';
     btn.textContent = word;
     btn.setAttribute('aria-label', word + ' portrait animation');
   };
-  ['play', 'pause', 'ended'].forEach(e => v.addEventListener(e, sync));
+  ['play', 'pause'].forEach(e => v.addEventListener(e, sync));
 
   if (btn) {
     btn.hidden = false;
     btn.addEventListener('click', () => {
-      if (!v.paused && !v.ended) return v.pause();
-      if (v.ended) v.currentTime = 0;
-      v.play().catch(showStill);
+      userPaused = !v.paused;
+      userPaused ? v.pause() : play();
     });
     sync();
   }
@@ -160,11 +161,11 @@
   if (still) return showStill();
 
   const start = () => {
-    v.preload = 'auto';
-    const play = () => v.play().catch(() => { showStill(); sync(); });
     if (!('IntersectionObserver' in window)) return play();
-    new IntersectionObserver((es, o) => es.forEach(e => {
-      if (e.isIntersecting) { o.disconnect(); play(); }
+    new IntersectionObserver(es => es.forEach(e => {
+      inView = e.isIntersecting;
+      if (inView && !userPaused) play();
+      else if (!inView && !v.paused) v.pause();
     }), { threshold: .4 }).observe(v);
   };
   const arm = () => 'requestIdleCallback' in window
